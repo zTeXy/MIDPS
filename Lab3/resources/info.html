@@ -1,0 +1,170 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>Igor Popa TI-152</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="website keywords, website keywords" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="style/style.css" />
+</head>
+
+<body>
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+
+          <h1><a href="index.html">Igor Popa <span class="logo_colour">TI-152</span></a></h1>
+          <h2>MIDPS Laborator 3</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+
+          <li><a href="index.html">Pagina principală</a></li>
+          <li class="selected"><a href="info.html">Info</a></li>
+          <li><a href="contact.php">Contacte</a></li>
+        </ul>
+      </div>
+    </div>
+    <div id="content_header"></div>
+    <div id="site_content">
+      <div id="sidebar_container">
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <!-- obiectele din sidebar -->
+            <h3>Orar</h3>
+            <h4>Laborator MIDPS</h4>
+            <h5>27.03.2017</h5>
+            <p><br /><a href="#">Citește mai departe</a></p>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+           <h3>Ora</h3>
+<center><iframe id="clock" scrolling="no" frameborder="no" clocktype="html5" style="overflow:hidden;border:0;margin:0;padding:0;width:120px;height:40px;"src="http://www.clocklink.com/html5embed.php?clock=004&timezone=MoldovaRepublicof_Chisinau&color=purple&size=120&Title=&Message=&Target=&From=2017,1,1,0,0,0&Color=purple"></iframe></center>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+    
+          
+          
+        </div>
+      </div>
+      <div id="content">
+    
+    <h2 id="myHeader">Fă click pentru a face request la date</h2>
+    
+    <input id="buttonAjax" type="button" value="Click Me!" onclick="getText('ajax_text.txt')" />
+    
+    </div>
+    
+    <script type="text/javascript">
+    
+    //Variabilele globale pt request
+    
+    var myRequest;
+    
+    //Functia getText(url) 
+    
+    function getText(url)
+    
+    {
+    
+    //verificam supportul pt obiectul XMLHttpRequest 
+    
+    if (window.XMLHttpRequest)
+    
+    {
+    
+    myRequest = new XMLHttpRequest();
+    
+    }
+    
+    //else, cream un obiect ActiveXObject pentru IE6
+    
+    else
+    
+    {
+    
+    myRequest = new ActiveXObject("Microsoft.XMLHTTP");
+    
+    }
+    
+    //Apelam metoda open() pentru a face request-ul
+    
+    myRequest.open("GET", url, true);
+    
+    //Trimitem requestul
+    
+    myRequest.send(null);
+    
+    //Atribuim functia getData() la
+    
+    //proprietatea onreadystatechange pentru server handle
+    myRequest.onreadystatechange = getData;
+    
+    }
+    
+    
+    
+    /**********************************************/
+    
+    
+    
+    //Cu functia data facem handle la server response
+    
+    function getData()
+    
+    {
+    
+    //Luam referinta dela elementul header unde va fi returnat rezultatul afisat
+    
+
+    var myHeader = document.getElementById("myHeader");
+    
+    //Verificam daca raspunsul e gata
+    
+    if (myRequest.readyState ===4)
+    
+    {
+    
+    //Verificam statutul la response
+    
+    if (myRequest.status === 200)
+    
+    {
+    
+    //Stocam raspunsul
+    
+    var text = myRequest.responseText;
+    
+    //Atribuim textul intors la proprietatea nodeValue a elementului de header
+    
+    
+    myHeader.firstChild.nodeValue = text;
+    
+    }
+    
+    }
+    
+    }
+    
+    
+    </script>
+
+    </div>
+    <div id="content_footer"></div>
+    <div id="footer">
+      <p><a href="index.html">Pagina principală</a> | <a href="info.html">Info</a> | <a href="contact.php">Contacte</a></p>
+      <p>2017</p>
+    </div>
+  </div>
+</body>
+</html>
